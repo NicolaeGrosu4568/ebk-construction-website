@@ -1,25 +1,61 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
+const slides = [
+  { src: "/hero/slide-1.jpg", zoom: "in" },
+  { src: "/hero/slide-2.jpg", zoom: "out" },
+  { src: "/hero/slide-3.jpg", zoom: "in" },
+  { src: "/hero/slide-4.jpg", zoom: "out" },
+  { src: "/hero/slide-5.jpg", zoom: "in" },
+];
+
+const SLIDE_DURATION = 5000; // ms per slide
+
 export default function Hero() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, SLIDE_DURATION);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background image via CSS — stock construction interior */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80')",
-        }}
-      />
+      {/* Slideshow backgrounds */}
+      <AnimatePresence>
+        <motion.div
+          key={current}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          {/* Ken Burns zoom */}
+          <motion.div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url('${slides[current].src}')` }}
+            initial={{
+              scale: slides[current].zoom === "in" ? 1 : 1.12,
+            }}
+            animate={{
+              scale: slides[current].zoom === "in" ? 1.12 : 1,
+            }}
+            transition={{ duration: SLIDE_DURATION / 1000 + 1.2, ease: "linear" }}
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1a3a6b]/85 via-[#1a3a6b]/75 to-[#1a3a6b]/60" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a3a6b]/80 via-[#1a3a6b]/65 to-[#1a3a6b]/75 z-10" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,7 +94,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link
-            href="#contact"
+            href="/contact"
             className="px-8 py-4 bg-[#c8a96e] hover:bg-[#b8943a] text-white font-semibold text-base tracking-wide transition-all duration-200 rounded-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
             Get a Free Quote
@@ -71,19 +107,40 @@ export default function Hero() {
           </Link>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Slide indicators */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          transition={{ delay: 1, duration: 0.6 }}
+          className="flex justify-center gap-2 mt-12"
         >
-          <div className="flex flex-col items-center gap-2 text-white/50">
-            <span className="text-xs tracking-widest uppercase">Scroll</span>
-            <div className="w-0.5 h-8 bg-white/30 animate-pulse" />
-          </div>
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`transition-all duration-500 rounded-full ${
+                i === current
+                  ? "w-8 h-2 bg-[#c8a96e]"
+                  : "w-2 h-2 bg-white/40 hover:bg-white/70"
+              }`}
+            />
+          ))}
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+      >
+        <div className="flex flex-col items-center gap-2 text-white/50">
+          <span className="text-xs tracking-widest uppercase">Scroll</span>
+          <div className="w-0.5 h-8 bg-white/30 animate-pulse" />
+        </div>
+      </motion.div>
     </section>
   );
 }
