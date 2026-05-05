@@ -12,11 +12,14 @@ DECIZII:
 - Hero slideshow din poze reale în loc de stock photo/video
 
 DE FĂCUT:
+- [ ] Services cards — înlocuiește iconițele cu imagini de fundal (ca Featured Projects)
+- [ ] Revizuire culori site — schema de culori nu se combină bine, de rafinat
 - [ ] Pagina About
 - [ ] Pagina Services
 - [ ] Pagina Portfolio
 - [ ] Pagina Contact + form
 - [ ] Pagini legale Privacy Policy + T&C
+- [ ] Faza 4: Supabase setup (tabele, RLS, Storage)
 
 ---
 
