@@ -2,15 +2,16 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { SERVICES } from "@/lib/constants";
 
-const icons: Record<string, string> = {
-  flooring: "🪵",
-  joinery: "🔨",
-  kitchen: "🍳",
-  fitout: "🏗️",
-  firedoor: "🚪",
-  carpentry: "🪚",
+const serviceImages: Record<string, string> = {
+  flooring: "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=800&q=80",
+  joinery: "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=800&q=80",
+  kitchen: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+  fitout: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+  firedoor: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+  carpentry: "https://images.unsplash.com/photo-1601058268499-e52658b8bb88?w=800&q=80",
 };
 
 export default function ServicesSection() {
@@ -38,7 +39,7 @@ export default function ServicesSection() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, i) => (
             <motion.div
               key={service.slug}
@@ -49,21 +50,35 @@ export default function ServicesSection() {
             >
               <Link
                 href={`/services#${service.slug}`}
-                className="group flex flex-col h-full bg-white border border-gray-100 hover:border-[#c8a96e] hover:shadow-lg transition-all duration-300 p-8 rounded-sm"
+                className="group relative flex flex-col h-72 overflow-hidden rounded-sm shadow-md hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="text-4xl mb-5">{icons[service.icon]}</div>
-                <h3 className="font-barlow font-bold text-xl text-[#1a3a6b] mb-1 group-hover:text-[#c8a96e] transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-[#c8a96e] font-medium mb-3">
-                  {service.subtitle}
-                </p>
-                <p className="text-gray-500 text-sm leading-relaxed flex-1">
-                  {service.short}
-                </p>
-                <div className="mt-5 flex items-center gap-2 text-[#1a3a6b] group-hover:text-[#c8a96e] text-sm font-semibold transition-colors">
-                  Learn more
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                {/* Background image */}
+                <Image
+                  src={serviceImages[service.icon]}
+                  alt={service.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+
+                {/* Overlay gradient — mai dens jos */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a6b]/90 via-[#1a3a6b]/40 to-transparent group-hover:from-[#1a3a6b]/95 transition-all duration-300" />
+
+                {/* Content */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <h3 className="font-barlow font-bold text-xl text-white mb-1 group-hover:text-[#c8a96e] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-[#c8a96e] text-xs font-semibold tracking-wide uppercase mb-3">
+                    {service.subtitle}
+                  </p>
+                  <p className="text-white/70 text-sm leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mb-3">
+                    {service.short}
+                  </p>
+                  <div className="flex items-center gap-2 text-white text-sm font-semibold">
+                    Learn more
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </div>
                 </div>
               </Link>
             </motion.div>

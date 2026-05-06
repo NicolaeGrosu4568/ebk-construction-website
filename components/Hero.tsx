@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const slides = [
   { src: "/hero/slide-1.jpg", zoom: "in" },
@@ -56,25 +57,31 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        <motion.p
+        {/* Logo în loc de text */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-[#c8a96e] font-barlow text-lg sm:text-xl tracking-[0.2em] uppercase font-semibold mb-4"
+          transition={{ duration: 0.7 }}
+          className="flex justify-center mb-0"
         >
-          EBK Construction LTD
-        </motion.p>
+          <Image
+            src="/logo-white.png"
+            alt="EBK Construction LTD"
+            width={340}
+            height={128}
+            className="w-96 sm:w-[440px] md:w-[560px] h-auto object-contain drop-shadow-2xl"
+            priority
+          />
+        </motion.div>
 
-        <motion.h1
+        <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-barlow font-bold text-5xl sm:text-6xl lg:text-7xl leading-tight mb-6"
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="font-barlow font-bold text-2xl sm:text-3xl lg:text-4xl tracking-[0.15em] uppercase text-[#c8a96e] mb-6"
         >
-          Building Spaces.
-          <br />
-          <span className="text-[#c8a96e]">Delivering Excellence.</span>
-        </motion.h1>
+          Building Spaces. Delivering Excellence.
+        </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
