@@ -12,11 +12,15 @@ DECIZII:
 - Domeniu la 123 Reg — Eduard trebuie să dea acces DNS sau credențiale
 
 DE FĂCUT:
+- [ ] Faza 4: Supabase setup — tabele contact_submissions, testimonials, blog_posts + RLS
+- [ ] Faza 5: Portofoliu dinamic din Supabase + Blog pagini publice
+- [ ] Faza 6: Resend integrat în route.ts + validare Zod + rate limiting (după DNS Eduard)
+- [ ] Faza 7: Autentificare admin (Supabase Auth)
+- [ ] Faza 8: Admin dashboard — portofoliu, contact inbox, testimoniale, blog
 - [ ] Faza 9: Privacy Policy + Terms & Conditions
-- [ ] Faza 10: sitemap.xml + robots.txt + JSON-LD + OG image + Cookie banner + GA4
-- [ ] Faza 4: Supabase setup (când Nicolae are cheile)
-- [ ] Faza 6: Resend conectat în route.ts (când DNS Eduard e rezolvat)
-- [ ] Testimoniale: decizie — eliminate sau "Coming Soon"
+- [ ] Faza 10: sitemap.xml + robots.txt + JSON-LD LocalBusiness + OG image 1200×630 + Cookie banner + GA4
+- [ ] Faza 11: Deploy Vercel + domeniu ebkconstruction.co.uk
+- [ ] Testimoniale: decizie — eliminate sau "Coming Soon" (nu sunt reale)
 
 ---
 
