@@ -9,24 +9,21 @@ const projects = [
     title: "80 Eaton Square",
     category: "Bespoke Joinery",
     location: "Belgravia, London",
-    image:
-      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=800&q=80",
     slug: "80-eaton-square",
   },
   {
     title: "Rosewood Hotel London",
     category: "Interior Fit-Out",
     location: "High Holborn, London",
-    image:
-      "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80",
+    image: "/portfolio/rosewood.jpg",
     slug: "rosewood-hotel",
   },
   {
     title: "Loro Piana — New Bond Street",
     category: "Luxury Retail Fit-Out",
     location: "New Bond Street, London",
-    image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
     slug: "loro-piana",
   },
 ];
@@ -72,7 +69,7 @@ export default function PortfolioPreview() {
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover scale-150 group-hover:scale-100 transition-transform duration-[2000ms] ease-in-out"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-[#1a3a6b]/0 group-hover:bg-[#1a3a6b]/30 transition-colors duration-300" />
