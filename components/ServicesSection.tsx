@@ -5,13 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { SERVICES } from "@/lib/constants";
 
-const serviceImages: Record<string, string> = {
-  flooring: "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=800&q=80",
-  joinery: "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=800&q=80",
-  kitchen: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-  fitout: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-  firedoor: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-  carpentry: "https://images.unsplash.com/photo-1601058268499-e52658b8bb88?w=800&q=80",
+const serviceImages: Record<string, { src: string; zoom: "in" | "out" }> = {
+  flooring: { src: "/services/flooring.jpg",  zoom: "in" },
+  joinery:  { src: "/services/joinery.jpg",   zoom: "out" },
+  kitchen:  { src: "/services/kitchen.jpg",   zoom: "in" },
+  fitout:   { src: "/services/fitout.jpg",    zoom: "out" },
+  firedoor: { src: "/services/firedoor.jpg",  zoom: "in" },
+  carpentry:{ src: "/services/carpentry.jpg", zoom: "out" },
 };
 
 export default function ServicesSection() {
@@ -52,16 +52,18 @@ export default function ServicesSection() {
                 href={`/services#${service.slug}`}
                 className="group relative flex flex-col h-72 overflow-hidden rounded-sm shadow-md hover:shadow-xl transition-shadow duration-300"
               >
-                {/* Background image */}
-                <Image
-                  src={serviceImages[service.icon]}
-                  alt={service.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
+                {/* Background image with zoom in/out on hover */}
+                <div className="absolute inset-0">
+                  <Image
+                    src={serviceImages[service.icon].src}
+                    alt={service.title}
+                    fill
+                    className="object-cover scale-140 group-hover:scale-100 transition-transform duration-[2000ms] ease-in-out"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
 
-                {/* Overlay gradient — mai dens jos */}
+                {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a6b]/90 via-[#1a3a6b]/40 to-transparent group-hover:from-[#1a3a6b]/95 transition-all duration-300" />
 
                 {/* Content */}
