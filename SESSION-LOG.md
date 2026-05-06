@@ -1,3 +1,25 @@
+## 2026-05-06 - Portfolio, Contact, Resend setup, audit PRD
+
+LUCRAT:
+- Pagina Portfolio completă: 3 proiecte reale, lightbox cu navigare, zoom-out hover
+- Imagini reale Rosewood (5 poze noi) și Loro Piana (5 poze) copiate și optimizate
+- Pagina Contact completă: formular, detalii contact, WhatsApp CTA, API route
+- Setup Resend început: domeniu ebkconstruction.co.uk adăugat, DNS la 123 Reg (Eduard)
+- Audit PRD vs review arhitect — toate punctele arhitectului sunt în PRD
+
+DECIZII:
+- Resend folosește contul lui Nicolae, nu cont separat Eduard
+- Domeniu la 123 Reg — Eduard trebuie să dea acces DNS sau credențiale
+
+DE FĂCUT:
+- [ ] Faza 9: Privacy Policy + Terms & Conditions
+- [ ] Faza 10: sitemap.xml + robots.txt + JSON-LD + OG image + Cookie banner + GA4
+- [ ] Faza 4: Supabase setup (când Nicolae are cheile)
+- [ ] Faza 6: Resend conectat în route.ts (când DNS Eduard e rezolvat)
+- [ ] Testimoniale: decizie — eliminate sau "Coming Soon"
+
+---
+
 ## 2026-05-05 - Hero slideshow + logo fix + culori
 
 LUCRAT:
