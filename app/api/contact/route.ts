@@ -25,12 +25,27 @@ function validate(data: Record<string, string>) {
   if (!data.name || data.name.trim().length < 2) errors.push("Name is required");
   if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.push("Valid email is required");
   if (!data.message || data.message.trim().length < 10) errors.push("Message must be at least 10 characters");
+  if (data.name?.length > 200) errors.push("Name too long");
+  if (data.message?.length > 5000) errors.push("Message too long");
   return errors;
+}
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+    const ip =
+      req.headers.get("x-vercel-forwarded-for") ??
+      req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+      "unknown";
+
     if (!checkRateLimit(ip)) {
       return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
     }
@@ -43,22 +58,32 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: errors[0] }, { status: 400 });
     }
 
-    // Salvare în Supabase
+    const safeName = escapeHtml(name.trim());
+    const safeEmail = escapeHtml(email.trim());
+    const safePhone = escapeHtml(phone?.trim() || "");
+    const safeService = escapeHtml(service?.trim() || "");
+    const safeMessage = escapeHtml(message.trim());
+
     const supabase = createServiceClient();
     const { error: dbError } = await supabase
       .from("contact_submissions")
-      .insert({ name: name.trim(), email: email.trim(), phone, service, message: message.trim() });
+      .insert({
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone?.trim() || null,
+        service: service?.trim() || null,
+        message: message.trim(),
+      });
 
     if (dbError) {
       console.error("Supabase error:", dbError);
       return NextResponse.json({ error: "Failed to save submission" }, { status: 500 });
     }
 
-    // Trimite email via Resend
     await resend.emails.send({
       from: "EBK Construction <noreply@ebkconstruction.co.uk>",
       to: process.env.CONTACT_EMAIL ?? "info@ebkconstruction.co.uk",
-      subject: `New Enquiry from ${name.trim()}`,
+      subject: `New Enquiry from ${safeName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #1a3a6b; padding: 24px; text-align: center;">
@@ -67,14 +92,14 @@ export async function POST(req: NextRequest) {
           </div>
           <div style="padding: 32px; background: #f8f8f8;">
             <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 8px 0; color: #666; font-size: 13px; width: 120px;">Name</td><td style="padding: 8px 0; color: #1a3a6b; font-weight: bold;">${name.trim()}</td></tr>
-              <tr><td style="padding: 8px 0; color: #666; font-size: 13px;">Email</td><td style="padding: 8px 0;"><a href="mailto:${email.trim()}" style="color: #1a3a6b;">${email.trim()}</a></td></tr>
-              <tr><td style="padding: 8px 0; color: #666; font-size: 13px;">Phone</td><td style="padding: 8px 0; color: #333;">${phone || "—"}</td></tr>
-              <tr><td style="padding: 8px 0; color: #666; font-size: 13px;">Service</td><td style="padding: 8px 0; color: #333;">${service || "—"}</td></tr>
+              <tr><td style="padding: 8px 0; color: #666; font-size: 13px; width: 120px;">Name</td><td style="padding: 8px 0; color: #1a3a6b; font-weight: bold;">${safeName}</td></tr>
+              <tr><td style="padding: 8px 0; color: #666; font-size: 13px;">Email</td><td style="padding: 8px 0;"><a href="mailto:${safeEmail}" style="color: #1a3a6b;">${safeEmail}</a></td></tr>
+              <tr><td style="padding: 8px 0; color: #666; font-size: 13px;">Phone</td><td style="padding: 8px 0; color: #333;">${safePhone || "—"}</td></tr>
+              <tr><td style="padding: 8px 0; color: #666; font-size: 13px;">Service</td><td style="padding: 8px 0; color: #333;">${safeService || "—"}</td></tr>
             </table>
             <div style="margin-top: 24px; padding: 16px; background: white; border-left: 3px solid #c8a96e;">
               <p style="color: #666; font-size: 13px; margin: 0 0 8px;">Message</p>
-              <p style="color: #333; margin: 0; line-height: 1.6;">${message.trim()}</p>
+              <p style="color: #333; margin: 0; line-height: 1.6;">${safeMessage}</p>
             </div>
           </div>
           <div style="padding: 16px; text-align: center; background: #1a3a6b;">
