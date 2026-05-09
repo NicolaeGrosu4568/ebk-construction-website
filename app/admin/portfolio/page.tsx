@@ -97,7 +97,7 @@ export default function PortfolioAdminPage() {
 
   const handleSave = async () => {
     setSaving(true);
-    const cover = form.images.length > 0 ? form.images[0] : form.cover_image_url;
+    const cover = form.cover_image_url || (form.images.length > 0 ? form.images[0] : "");
     const payload = { ...form, cover_image_url: cover };
     if (editingId) {
       await fetch("/api/admin/portfolio", {
@@ -323,7 +323,7 @@ export default function PortfolioAdminPage() {
                             fd.append("folder", folder);
                             const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
                             const data = await res.json();
-                            if (data.url) setForm((f) => ({ ...f, images: [...f.images, data.url] }));
+                            if (data.url) setForm((f) => ({ ...f, images: [...f.images, data.url], cover_image_url: f.cover_image_url || data.url }));
                           }
                           setPendingFiles([]);
                           setUploading(false);
