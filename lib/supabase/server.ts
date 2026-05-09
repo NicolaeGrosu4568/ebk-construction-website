@@ -47,5 +47,9 @@ export async function requireAdminSession(req: NextRequest): Promise<NextRespons
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+  const adminEmail = process.env.ADMIN_EMAIL ?? "info@ebkconstruction.co.uk";
+  if (user.email !== adminEmail) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   return null;
 }

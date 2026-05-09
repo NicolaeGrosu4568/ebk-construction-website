@@ -74,7 +74,9 @@ export async function DELETE(req: NextRequest) {
   if (unauth) return unauth;
 
   const body = await req.json();
-  const { id } = z.object({ id: z.string().uuid() }).parse(body);
+  const parsed = z.object({ id: z.string().uuid() }).safeParse(body);
+  if (!parsed.success) return NextResponse.json({ error: "Invalid id" }, { status: 400 });
+  const { id } = parsed.data;
 
   const supabase = createServiceClient();
   const { error } = await supabase.from("testimonials").delete().eq("id", id);
