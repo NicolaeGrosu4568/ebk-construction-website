@@ -32,7 +32,7 @@ export default function AdminDashboardPage() {
         fetch("/api/admin/blog").then((r) => r.json()).catch(() => []),
       ]).then(([enquiries, projects, testimonials, blogPosts]) => {
         setStats({
-          newEnquiries: Array.isArray(enquiries) ? enquiries.filter((e: any) => !e.read && !e.archived).length : 0,
+          newEnquiries: Array.isArray(enquiries) ? enquiries.filter((e: { read: boolean; archived: boolean }) => !e.read && !e.archived).length : 0,
           portfolioProjects: Array.isArray(projects) ? projects.length : 0,
           testimonials: Array.isArray(testimonials) ? testimonials.length : 0,
           blogPosts: Array.isArray(blogPosts) ? blogPosts.length : 0,

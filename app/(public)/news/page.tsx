@@ -11,6 +11,7 @@ type Post = {
   excerpt: string | null;
   cover_image_url: string | null;
   created_at: string;
+  published?: boolean;
 };
 
 export default function NewsPage() {
@@ -20,7 +21,7 @@ export default function NewsPage() {
   useEffect(() => {
     fetch("/api/blog")
       .then((r) => r.json())
-      .then((data: any[]) => {
+      .then((data: Post[]) => {
         setPosts(Array.isArray(data) ? data.filter((p) => p.published) : []);
         setLoading(false);
       })

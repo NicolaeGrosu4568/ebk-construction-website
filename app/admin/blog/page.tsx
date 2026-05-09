@@ -331,7 +331,7 @@ export default function BlogAdminPage() {
                     {post.cover_image_url && (
                       <div className="w-20 h-14 flex-shrink-0 rounded-sm overflow-hidden border border-gray-100">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={post.cover_image_url} alt="" className="w-full h-full object-cover" />
+                        <img src={post.cover_image_url} alt={post.title} className="w-full h-full object-cover" />
                       </div>
                     )}
                     <div className="flex-1 min-w-0">

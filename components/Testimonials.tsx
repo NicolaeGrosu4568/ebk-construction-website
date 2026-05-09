@@ -9,6 +9,7 @@ type Testimonial = {
   client_role: string | null;
   content: string;
   rating: number | null;
+  published?: boolean;
 };
 
 const fallback: Testimonial[] = [
@@ -174,7 +175,7 @@ export default function Testimonials() {
     fetch("/api/admin/testimonials")
       .then((r) => r.json())
       .then((data: Testimonial[]) => {
-        const published = data.filter((t: any) => t.published);
+        const published = data.filter((t: Testimonial) => t.published);
         if (published.length > 0) setTestimonials(published);
       })
       .catch(() => {});

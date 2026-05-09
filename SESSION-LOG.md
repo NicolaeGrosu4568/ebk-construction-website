@@ -1,3 +1,17 @@
+## 2026-05-09 - Ghid Eduard finalizat cu logourile corecte
+
+LUCRAT:
+- Generat `/Users/nicolaegrosu/Desktop/EBK-Ghid-Website.html` — ghid complet 7 pagini pentru Eduard
+- Cover page (dark navy): Earn G alb + EBK `logo-white.png` (alb pe transparent, ca pe hero)
+- Pagini interioare (light): EBK `logo.png` color, mărit la 60px
+- Scriptul de generare: `/tmp/generate_guide2.py`
+
+DECIZII:
+- Logo EBK pe fundal întunecat = `logo-white.png` (același ca hero-ul site-ului)
+- Logo EBK pe fundal alb = `logo.png` (original pe transparent)
+
+---
+
 ## 2026-05-09 - Post-deploy fixes, email, admin dashboard
 
 LUCRAT:

@@ -286,7 +286,7 @@ export default function PortfolioAdminPage() {
                           setForm((f) => ({ ...f, cover_image_url: url }));
                         }}
                       >
-                        <img src={url} alt="" className="w-full h-full object-cover bg-gray-100" />
+                        <img src={url} alt={`Image ${i + 1}`} className="w-full h-full object-cover bg-gray-100" />
                         <button
                           onClick={() => setForm((f) => ({ ...f, images: f.images.filter((_, j) => j !== i), cover_image_url: f.cover_image_url === url ? (f.images[0] ?? "") : f.cover_image_url }))}
                           className="absolute top-1 right-1 w-5 h-5 bg-red-500 text-white rounded-full text-xs opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10"

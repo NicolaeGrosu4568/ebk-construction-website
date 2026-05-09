@@ -14,6 +14,7 @@ type Post = {
   content: string | null;
   cover_image_url: string | null;
   created_at: string;
+  published?: boolean;
 };
 
 export default function NewsPostPage() {
@@ -26,7 +27,7 @@ export default function NewsPostPage() {
     fetch("/api/blog")
       .then((r) => r.json())
       .then((data: Post[]) => {
-        const found = data.find((p: any) => p.slug === slug && p.published);
+        const found = data.find((p: Post) => p.slug === slug && p.published);
         if (found) setPost(found);
         else setNotFound(true);
         setLoading(false);
