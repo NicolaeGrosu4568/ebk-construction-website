@@ -286,7 +286,7 @@ export default function PortfolioAdminPage() {
                           setForm((f) => ({ ...f, cover_image_url: url }));
                         }}
                       >
-                        <img src={url} alt={`Image ${i + 1}`} className="w-full h-full object-cover bg-gray-100" />
+                        <Image src={url} alt={`Image ${i + 1}`} fill className="object-cover" unoptimized />
                         <button
                           onClick={() => setForm((f) => ({ ...f, images: f.images.filter((_, j) => j !== i), cover_image_url: f.cover_image_url === url ? (f.images[0] ?? "") : f.cover_image_url }))}
                           className="absolute top-1 right-1 w-5 h-5 bg-red-500 text-white rounded-full text-xs opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10"
@@ -413,8 +413,8 @@ export default function PortfolioAdminPage() {
             {projects.map((p) => (
               <div key={p.id} className="bg-white rounded-sm shadow-sm flex items-center gap-4 px-5 py-4">
                 {p.cover_image_url ? (
-                  <div className="w-16 h-12 rounded-sm overflow-hidden flex-shrink-0 bg-gray-100">
-                    <img src={p.cover_image_url} alt={p.title} className="w-full h-full object-cover" />
+                  <div className="relative w-16 h-12 rounded-sm overflow-hidden flex-shrink-0 bg-gray-100">
+                    <Image src={p.cover_image_url} alt={p.title} fill className="object-cover" unoptimized />
                   </div>
                 ) : (
                   <div className="w-16 h-12 rounded-sm bg-gray-100 flex-shrink-0 flex items-center justify-center text-gray-300 text-xs">No img</div>

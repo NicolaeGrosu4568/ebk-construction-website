@@ -277,8 +277,7 @@ export default function BlogAdminPage() {
                 </div>
                 {form.cover_image_url && (
                   <div className="mt-2 relative w-full aspect-video max-w-sm rounded-sm overflow-hidden border border-gray-100">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={form.cover_image_url} alt="Cover preview" className="w-full h-full object-cover" />
+                    <Image src={form.cover_image_url} alt="Cover preview" fill className="object-cover" unoptimized />
                     <button
                       onClick={() => setForm((f) => ({ ...f, cover_image_url: "" }))}
                       className="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded hover:bg-black/80"
@@ -329,9 +328,8 @@ export default function BlogAdminPage() {
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex gap-4 flex-1 min-w-0">
                     {post.cover_image_url && (
-                      <div className="w-20 h-14 flex-shrink-0 rounded-sm overflow-hidden border border-gray-100">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={post.cover_image_url} alt={post.title} className="w-full h-full object-cover" />
+                      <div className="relative w-20 h-14 flex-shrink-0 rounded-sm overflow-hidden border border-gray-100">
+                        <Image src={post.cover_image_url} alt={post.title} fill className="object-cover" unoptimized />
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
