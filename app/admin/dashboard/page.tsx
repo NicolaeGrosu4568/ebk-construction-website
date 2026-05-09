@@ -24,19 +24,19 @@ export default function AdminDashboardPage() {
       if (!session) { router.replace("/admin/login"); return; }
       setEmail(session.user.email ?? null);
       setLoading(false);
-    });
 
-    Promise.all([
-      fetch("/api/admin/enquiries").then((r) => r.json()).catch(() => []),
-      fetch("/api/admin/portfolio").then((r) => r.json()).catch(() => []),
-      fetch("/api/admin/testimonials").then((r) => r.json()).catch(() => []),
-      fetch("/api/admin/blog").then((r) => r.json()).catch(() => []),
-    ]).then(([enquiries, projects, testimonials, blogPosts]) => {
-      setStats({
-        newEnquiries: Array.isArray(enquiries) ? enquiries.filter((e: any) => !e.read && !e.archived).length : 0,
-        portfolioProjects: Array.isArray(projects) ? projects.length : 0,
-        testimonials: Array.isArray(testimonials) ? testimonials.length : 0,
-        blogPosts: Array.isArray(blogPosts) ? blogPosts.length : 0,
+      Promise.all([
+        fetch("/api/admin/enquiries").then((r) => r.json()).catch(() => []),
+        fetch("/api/admin/portfolio").then((r) => r.json()).catch(() => []),
+        fetch("/api/admin/testimonials").then((r) => r.json()).catch(() => []),
+        fetch("/api/admin/blog").then((r) => r.json()).catch(() => []),
+      ]).then(([enquiries, projects, testimonials, blogPosts]) => {
+        setStats({
+          newEnquiries: Array.isArray(enquiries) ? enquiries.filter((e: any) => !e.read && !e.archived).length : 0,
+          portfolioProjects: Array.isArray(projects) ? projects.length : 0,
+          testimonials: Array.isArray(testimonials) ? testimonials.length : 0,
+          blogPosts: Array.isArray(blogPosts) ? blogPosts.length : 0,
+        });
       });
     });
   }, [router]);
