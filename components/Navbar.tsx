@@ -41,13 +41,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-28">
           {/* Company name image */}
-          <Link href="/" className="flex-shrink-0 -ml-8">
+          <Link href="/" className="flex-shrink-0 md:-ml-8">
             <Image
               src={scrolled || !isHome || menuOpen ? "/logo.png" : "/company-name-white.png"}
               alt="EBK Construction LTD"
               width={400}
               height={100}
-              className={`object-contain ${scrolled || !isHome || menuOpen ? "h-36 w-auto" : "h-auto w-64 sm:w-80 md:w-96"}`}
+              className={`object-contain ${scrolled || !isHome || menuOpen ? "h-24 sm:h-36 w-auto" : "h-auto w-40 sm:w-64 md:w-80 lg:w-96"}`}
               priority
             />
           </Link>
