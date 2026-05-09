@@ -27,6 +27,13 @@ export default function FloatingCTA() {
             <span className="text-lg">📞</span>
             Call Us
           </a>
+          <a
+            href={`mailto:${SITE.email}`}
+            className="flex items-center gap-3 bg-[#c8a96e] hover:bg-[#b8943a] text-white px-4 py-3 rounded-full shadow-lg transition-all duration-200 text-sm font-semibold whitespace-nowrap"
+          >
+            <span className="text-lg">✉️</span>
+            Email Us
+          </a>
         </>
       )}
 

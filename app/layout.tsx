@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed, Inter } from "next/font/google";
 import "./globals.css";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CookieBanner from "@/components/CookieBanner";
 
 const barlowCondensed = Barlow_Condensed({
   variable: "--font-barlow",
@@ -41,7 +43,9 @@ export default function RootLayout({
       className={`${barlowCondensed.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-gray-900 font-inter">
+        <GoogleAnalytics />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

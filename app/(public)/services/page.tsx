@@ -8,7 +8,7 @@ const services = [
   {
     slug: "flooring",
     title: "Flooring",
-    subtitle: "Wood, Laminate & Vinyl Installation",
+    subtitle: "Wood, Laminate & Vinyl — Residential & Commercial",
     image: "/services/flooring.jpg",
     short: "Premium flooring solutions installed to the highest standard — from classic hardwood to modern vinyl, we transform any space from the ground up.",
     full: "The right floor sets the tone for an entire space. At EBK Construction, we supply and install a full range of flooring solutions to suit every style, budget, and requirement. Whether you're updating a family home, refitting a rental property, or completing a commercial fit-out, our team delivers a finish that's built to last.\n\nWe work with engineered hardwood, solid wood, laminate, LVT (luxury vinyl tile), and sheet vinyl — advising you on the best option for your subfloor condition, foot traffic levels, and aesthetic goals. Every installation begins with thorough subfloor preparation to ensure a perfectly level, stable surface — because the best flooring starts before a single plank is laid.",
@@ -23,7 +23,7 @@ const services = [
   {
     slug: "bespoke-joinery",
     title: "Bespoke Joinery",
-    subtitle: "Supply & Installation",
+    subtitle: "Alcoves, Staircases & Panelling — Bespoke & Made to Measure",
     image: "/services/joinery.jpg",
     short: "Handcrafted joinery designed around your space — built to measure, finished to perfection, and made to last a lifetime.",
     full: "Off-the-shelf solutions rarely fit perfectly. That's why we offer fully bespoke joinery — designed and built to your exact specifications, tailored to your space, and finished to complement your interior perfectly.\n\nFrom alcove shelving and floating shelves to staircases, window seats, and architectural panelling, our joiners bring precision craftsmanship to every commission. We work closely with clients from initial concept through to final installation, ensuring the finished piece is exactly what was envisioned — and often better.",
@@ -39,7 +39,7 @@ const services = [
   {
     slug: "kitchens-wardrobes",
     title: "Kitchens & Wardrobes",
-    subtitle: "Supply & Installation",
+    subtitle: "Fitted & Bespoke Solutions — Residential & Commercial",
     image: "/services/kitchen.jpg",
     short: "From full kitchen installations to fitted wardrobes — precise, professional, and built around the way you live.",
     full: "A kitchen or wardrobe installation is only as good as the team fitting it. At EBK Construction, we handle every aspect of your kitchen or fitted wardrobe project — from removing the old units to fitting the final handle — with the care and accuracy that furniture of this quality demands.\n\nWe work with units supplied by you or can advise on quality suppliers to suit your budget. Our team manages the full installation process including worktops, plinth and cornice work, internal fittings, and all the finishing details that make the difference between a good result and a great one.",
@@ -54,7 +54,7 @@ const services = [
   {
     slug: "interior-fit-out",
     title: "Interior Fit-Out",
-    subtitle: "Residential & Commercial",
+    subtitle: "First & Second Fix — Residential & Commercial",
     image: "/services/fitout.jpg",
     short: "Complete interior fit-out for residential and commercial spaces — transforming empty shells into finished, functional environments.",
     full: "Whether you're fitting out a new build, converting a commercial space, or completely refurbishing an existing property, EBK Construction delivers interior fit-out solutions that are efficient, high-quality, and coordinated from start to finish.\n\nWe work with developers, landlords, business owners, and homeowners on projects of all scales — from a single office refurbishment to a multi-unit residential development. Our team manages the full fit-out package, including partitioning, suspended ceilings, flooring, joinery, and all associated finishing work.",
@@ -70,7 +70,7 @@ const services = [
   {
     slug: "fire-doors",
     title: "Fire Doors",
-    subtitle: "Supply & Installation",
+    subtitle: "FD30 & FD60 Certified — Supply, Installation & Compliance",
     image: "/services/firedoor.jpg",
     short: "Certified fire door supply and installation — protecting lives, meeting regulations, and built to last.",
     full: "Fire doors are one of the most critical safety features in any building. Incorrectly fitted or non-compliant fire doors can put lives at risk and expose property owners to serious legal liability. At EBK Construction, we take fire door installation seriously — supplying certified products and fitting them to the exacting standards required by UK building regulations.\n\nWe work on residential, HMO, and commercial properties, providing fire door solutions that are compliant with BS 8214, BS EN 1634, and the Fire Safety Order 2005. Every installation is carried out by experienced fitters who understand exactly what correct installation looks like — and why it matters.",
@@ -86,7 +86,7 @@ const services = [
   {
     slug: "carpentry",
     title: "Carpentry & Construction",
-    subtitle: "General Works",
+    subtitle: "General & Structural Works — Residential & Commercial",
     image: "/services/carpentry.jpg",
     short: "Skilled carpentry and general construction works for residential and commercial clients — no job too small, no challenge too complex.",
     full: "Not every project fits neatly into a single category. At EBK Construction, we offer a full range of general carpentry and construction services to complement our specialist work — or to stand alone as individual projects.\n\nFrom stud wall construction and door hanging to loft conversions and structural timber work, our team has the skills and experience to tackle a wide variety of building tasks with the same level of care and precision we bring to every job.",
@@ -183,7 +183,7 @@ export default function ServicesPage() {
                   className={i % 2 !== 0 ? "lg:order-1" : ""}
                 >
                   <p className="text-[#c8a96e] font-semibold tracking-[0.15em] uppercase text-sm mb-2">
-                    0{i + 1}
+                    {service.subtitle}
                   </p>
                   <h2 className="font-barlow font-bold text-3xl sm:text-4xl text-[#1a3a6b] mb-4">
                     {service.title}

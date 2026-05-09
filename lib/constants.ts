@@ -19,7 +19,7 @@ export const SERVICES = [
   {
     slug: "flooring",
     title: "Flooring",
-    subtitle: "Wood, Laminate & Vinyl Installation",
+    subtitle: "Wood, Laminate & Vinyl — Residential & Commercial",
     icon: "flooring",
     short: "Premium flooring solutions installed to the highest standard — from classic hardwood to modern vinyl, we transform any space from the ground up.",
     category: "flooring",
@@ -27,7 +27,7 @@ export const SERVICES = [
   {
     slug: "bespoke-joinery",
     title: "Bespoke Joinery",
-    subtitle: "Supply & Installation",
+    subtitle: "Alcoves, Staircases & Panelling — Bespoke & Made to Measure",
     icon: "joinery",
     short: "Handcrafted joinery designed around your space — built to measure, finished to perfection, and made to last a lifetime.",
     category: "joinery",
@@ -35,7 +35,7 @@ export const SERVICES = [
   {
     slug: "kitchens-wardrobes",
     title: "Kitchens & Wardrobes",
-    subtitle: "Supply & Installation",
+    subtitle: "Fitted & Bespoke Solutions — Residential & Commercial",
     icon: "kitchen",
     short: "From full kitchen installations to fitted wardrobes — precise, professional, and built around the way you live.",
     category: "kitchens",
@@ -43,7 +43,7 @@ export const SERVICES = [
   {
     slug: "interior-fit-out",
     title: "Interior Fit-Out",
-    subtitle: "Residential & Commercial",
+    subtitle: "First & Second Fix — Residential & Commercial",
     icon: "fitout",
     short: "Complete interior fit-out for residential and commercial spaces — transforming empty shells into finished, functional environments.",
     category: "fit-out",
@@ -51,7 +51,7 @@ export const SERVICES = [
   {
     slug: "fire-doors",
     title: "Fire Doors",
-    subtitle: "Supply & Installation",
+    subtitle: "FD30 & FD60 Certified — Supply, Installation & Compliance",
     icon: "firedoor",
     short: "Certified fire door supply and installation — protecting lives, meeting regulations, and built to last.",
     category: "fire-doors",
@@ -59,7 +59,7 @@ export const SERVICES = [
   {
     slug: "carpentry",
     title: "Carpentry & Construction",
-    subtitle: "General Works",
+    subtitle: "General & Structural Works — Residential & Commercial",
     icon: "carpentry",
     short: "Skilled carpentry and general construction works for residential and commercial clients — no job too small, no challenge too complex.",
     category: "carpentry",
@@ -71,5 +71,6 @@ export const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "News", href: "/news" },
   { label: "Contact", href: "/contact" },
 ] as const;

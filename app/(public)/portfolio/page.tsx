@@ -10,6 +10,7 @@ type Project = {
   slug: string;
   title: string;
   category: string;
+  project_type: string | null;
   location: string | null;
   short_description: string | null;
   full_description: string | null;
@@ -154,7 +155,7 @@ export default function PortfolioPage() {
             <div key={project.id} id={project.slug} className={`py-20 ${i % 2 === 0 ? "bg-white" : "bg-[#f8f8f8]"}`}>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: 0.6 }} className="mb-12">
-                  <p className="text-[#c8a96e] font-semibold tracking-[0.15em] uppercase text-sm mb-2">0{i + 1} — {project.category}</p>
+                  <p className="text-[#c8a96e] font-semibold tracking-[0.15em] uppercase text-sm mb-2">{project.project_type || project.category}</p>
                   <h2 className="font-barlow font-bold text-3xl sm:text-4xl text-[#1a3a6b] mb-2">{project.title}</h2>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-0.5 bg-[#c8a96e]" />

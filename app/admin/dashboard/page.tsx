@@ -20,28 +20,24 @@ export default function AdminDashboardPage() {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (!session) {
-        router.replace("/admin/login");
-        return;
-      }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) { router.replace("/admin/login"); return; }
       setEmail(session.user.email ?? null);
-
-      const [enquiries, projects, testimonials, blogs] = await Promise.all([
-        supabase.from("contact_submissions").select("id", { count: "exact" }).eq("read", false).eq("archived", false),
-        supabase.from("projects").select("id", { count: "exact" }),
-        supabase.from("testimonials").select("id", { count: "exact" }),
-        supabase.from("blog_posts").select("id", { count: "exact" }),
-      ]);
-
-      setStats({
-        newEnquiries: enquiries.count ?? 0,
-        portfolioProjects: projects.count ?? 0,
-        testimonials: testimonials.count ?? 0,
-        blogPosts: blogs.count ?? 0,
-      });
-
       setLoading(false);
+    });
+
+    Promise.all([
+      fetch("/api/admin/enquiries").then((r) => r.json()).catch(() => []),
+      fetch("/api/admin/portfolio").then((r) => r.json()).catch(() => []),
+      fetch("/api/admin/testimonials").then((r) => r.json()).catch(() => []),
+      fetch("/api/admin/blog").then((r) => r.json()).catch(() => []),
+    ]).then(([enquiries, projects, testimonials, blogPosts]) => {
+      setStats({
+        newEnquiries: Array.isArray(enquiries) ? enquiries.filter((e: any) => !e.read && !e.archived).length : 0,
+        portfolioProjects: Array.isArray(projects) ? projects.length : 0,
+        testimonials: Array.isArray(testimonials) ? testimonials.length : 0,
+        blogPosts: Array.isArray(blogPosts) ? blogPosts.length : 0,
+      });
     });
   }, [router]);
 
@@ -55,7 +51,7 @@ export default function AdminDashboardPage() {
     { label: "New Enquiries", icon: "✉", value: stats.newEnquiries, href: "/admin/enquiries", highlight: stats.newEnquiries > 0 },
     { label: "Portfolio Projects", icon: "🏗", value: stats.portfolioProjects, href: "/admin/portfolio", highlight: false },
     { label: "Testimonials", icon: "⭐", value: stats.testimonials, href: "/admin/testimonials", highlight: false },
-    { label: "Blog Posts", icon: "📝", value: stats.blogPosts, href: "/admin/blog", highlight: false },
+    { label: "News Posts", icon: "📝", value: stats.blogPosts, href: "/admin/blog", highlight: false },
   ];
 
   if (loading) return (
@@ -131,7 +127,7 @@ export default function AdminDashboardPage() {
               { label: "View Enquiries", href: "/admin/enquiries" },
               { label: "Manage Portfolio", href: "/admin/portfolio" },
               { label: "Manage Testimonials", href: "/admin/testimonials" },
-              { label: "Manage Blog", href: "/admin/blog" },
+              { label: "Manage News", href: "/admin/blog" },
             ].map((link) => (
               <button
                 key={link.label}

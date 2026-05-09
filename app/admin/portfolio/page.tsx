@@ -9,6 +9,7 @@ type Project = {
   title: string;
   slug: string;
   category: string;
+  project_type: string | null;
   location: string | null;
   short_description: string | null;
   full_description: string | null;
@@ -19,11 +20,13 @@ type Project = {
 };
 
 const CATEGORIES = ["flooring", "joinery", "kitchens", "fit-out", "fire-doors", "carpentry"];
+const PROJECT_TYPES = ["Private Residential", "Commercial Hospitality", "Luxury Retail", "Commercial Office", "HMO / Landlord", "Property Developer", "Other"];
 
 const emptyForm = {
   title: "",
   slug: "",
   category: "fit-out",
+  project_type: "",
   location: "",
   short_description: "",
   full_description: "",
@@ -74,6 +77,7 @@ export default function PortfolioAdminPage() {
       title: p.title,
       slug: p.slug,
       category: p.category,
+      project_type: p.project_type ?? "",
       location: p.location ?? "",
       short_description: p.short_description ?? "",
       full_description: p.full_description ?? "",
@@ -211,6 +215,17 @@ export default function PortfolioAdminPage() {
                   className="w-full px-3 py-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#1a3a6b] bg-white"
                 >
                   {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Project Type</label>
+                <select
+                  value={form.project_type}
+                  onChange={(e) => setForm((f) => ({ ...f, project_type: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#1a3a6b] bg-white"
+                >
+                  <option value="">— Select type —</option>
+                  {PROJECT_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
               <div>

@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import JsonLd from "@/components/JsonLd";
 import StatsBar from "@/components/StatsBar";
 import ServicesSection from "@/components/ServicesSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -9,6 +10,7 @@ import CTABanner from "@/components/CTABanner";
 export default function HomePage() {
   return (
     <main>
+      <JsonLd />
       <Hero />
       <StatsBar />
       <ServicesSection />

@@ -1,3 +1,27 @@
+## 2026-05-09 - Faza 8 completă: Admin panel toate modulele
+
+LUCRAT:
+- Admin header: logo alb + "Admin Panel" cu gradient shimmer effect
+- `/admin/enquiries`: inbox mesaje, filtre All/Unread/Archived, mark-as-read la deschidere
+- `/admin/portfolio`: manager proiecte + upload imagini Supabase Storage + right-click cover
+- `/admin/testimonials`: manager cu star rating + toggle live/draft
+- `/admin/blog`: manager posts cu Markdown editor, upload cover, filtre, slugify auto
+- Dashboard stats conectate la API routes (nu direct Supabase client) — fix pentru RLS
+- 5 testimoniale placeholder inserate în DB (James Whitfield, Sarah Mitchell, David Okafor, Natalie Brewer, Nicolae Grosu)
+- Fix: `SUPABASE_SERVICE_ROLE_KEY` corectat (JWT legacy format din Supabase Legacy API Keys tab)
+
+DECIZII:
+- Toate citirile admin merg prin `/api/admin/*` cu `createServiceClient()` (bypass RLS)
+- Testimonials component pe site arată fallback hardcodat dacă nu sunt publicate în DB
+
+DE FĂCUT:
+- [ ] Faza 9: Privacy Policy + Terms & Conditions pages
+- [ ] Faza 10: SEO (sitemap.xml, robots.txt, JSON-LD LocalBusiness), GA4, Cookie Banner
+- [ ] Faza 11: Deploy Vercel + domeniu ebkconstruction.co.uk
+- [ ] Blog public page `/blog` + `/blog/[slug]` (citire din DB, render Markdown)
+
+---
+
 ## 2026-05-06 - Portfolio, Contact, Resend setup, audit PRD
 
 LUCRAT:
