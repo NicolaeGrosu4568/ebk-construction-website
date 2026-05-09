@@ -1,3 +1,25 @@
+## 2026-05-09 - Post-deploy fixes, email, admin dashboard
+
+LUCRAT:
+- Imagini Eaton Square uploadate în Supabase Storage + DB actualizat (toate 3 proiecte OK)
+- Forgot password flow: buton pe login page + pagina /admin/reset-password
+- proxy.ts: /admin/reset-password exempt din auth check
+- Email admin schimbat la ebk.constructionco@yahoo.com (Supabase Auth + Vercel env vars)
+- CONTACT_EMAIL schimbat la Yahoo pe Vercel + .env.local
+- Dashboard fix: fetch stats doar după confirmarea sesiunii
+- requireAdminSession: eliminat verificarea emailului (cauza 403 pe toate API-urile admin)
+- Cover image fix: right-click setează cover, nu mai e forțat la prima imagine
+
+DECIZII:
+- Email profesional info@ebkconstruction.co.uk rămâne pe site ca display, dar funcțional folosim Yahoo temporar
+- Verificarea emailului în requireAdminSession eliminată — auth Supabase e suficient
+
+DE FĂCUT:
+- [ ] Eduard să cumpere email hosting (123-reg sau Google Workspace) și să schimbe înapoi la info@ebkconstruction.co.uk
+- [ ] Testa forgot password flow end-to-end când emailul e configurat
+
+---
+
 ## 2026-05-09 - Faza 8 completă: Admin panel toate modulele
 
 LUCRAT:
