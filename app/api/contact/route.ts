@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: "EBK Construction <noreply@ebkconstruction.co.uk>",
-      to: process.env.CONTACT_EMAIL ?? "info@ebkconstruction.co.uk",
+      to: process.env.CONTACT_EMAIL ?? "ebk.constructionco@yahoo.com",
       subject: `New Enquiry from ${safeName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
