@@ -1,3 +1,24 @@
+## 2026-05-09 - Audit Codex rezolvat, raport proiect generat
+
+LUCRAT:
+- Rezolvat toate problemele din auditul Codex: `any` types, alt text, loading/error boundaries, `<img>` → `next/image`
+- TypeScript zero erori după fix-uri
+- Generat `EBK-Audit-Report.md` pe Desktop (raport tehnic complet)
+- Generat `EBK-Project-Report.md` pe Desktop (raport pentru trainer Danut)
+- Scris mesaj prietenos pentru trainer cu link site live
+
+DECIZII:
+- Skip refactorizare server components în admin — complexitate mare, beneficiu zero pentru un singur user
+- JSON-LD LocalBusiness era deja implementat (verificat)
+
+DE FĂCUT:
+- [ ] Eduard: cumpărat email hosting pentru info@ebkconstruction.co.uk
+- [ ] Eduard: creat conturi social media
+- [ ] Eduard: adăugat testimoniale reale din admin
+- [ ] Trimis raport + mesaj către Danut pentru feedback
+
+---
+
 ## 2026-05-09 - Ghid Eduard finalizat cu logourile corecte
 
 LUCRAT:
