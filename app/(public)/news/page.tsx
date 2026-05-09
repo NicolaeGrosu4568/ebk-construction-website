@@ -18,7 +18,7 @@ export default function NewsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/admin/blog")
+    fetch("/api/blog")
       .then((r) => r.json())
       .then((data: any[]) => {
         setPosts(Array.isArray(data) ? data.filter((p) => p.published) : []);

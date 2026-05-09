@@ -102,7 +102,7 @@ export default function PortfolioPage() {
   const [heroImage, setHeroImage] = useState("/portfolio/rw-new-1.jpg");
 
   useEffect(() => {
-    fetch("/api/admin/portfolio")
+    fetch("/api/portfolio")
       .then((r) => r.json())
       .then((data: Project[]) => {
         const published = data.filter((p) => p.published);

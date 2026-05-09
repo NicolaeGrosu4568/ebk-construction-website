@@ -23,7 +23,7 @@ export default function NewsPostPage() {
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    fetch("/api/admin/blog")
+    fetch("/api/blog")
       .then((r) => r.json())
       .then((data: Post[]) => {
         const found = data.find((p: any) => p.slug === slug && p.published);
