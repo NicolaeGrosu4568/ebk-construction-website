@@ -7,6 +7,7 @@ export async function proxy(req: NextRequest) {
 
   if (!pathname.startsWith("/admin")) return res;
   if (pathname === "/admin/login") return res;
+  if (pathname === "/admin/reset-password") return res;
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
